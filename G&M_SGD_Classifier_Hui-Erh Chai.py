@@ -31,9 +31,9 @@ import matplotlib.pyplot as plt
 colors = ['red', 'greenyellow', 'blue']
 #it doesnt like "xrange" changed to "range"
 for i in range(len(colors)):
-    xs = X_train[:, 0][y_train == i]
+    Xs = X_train[:, 0][y_train == i]
     ys = X_train[:, 1][y_train == i]
-    plt.scatter(xs, ys, c=colors[i])
+    plt.scatter(Xs, ys, c=colors[i])
 plt.legend(iris.target_names)
 plt.xlabel('Sepal length')
 plt.ylabel('Sepal width')
@@ -70,7 +70,7 @@ for i in [0, 1, 2]:
     plt.sca(axes[i])
     plt.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=plt.cm.prism)
     ys = (-clf.intercept_[i] - Xs * clf.coef_[i, 0]) / clf.coef_[i, 1]
-    plt.plot(xs, ys, hold=True)
+    plt.plot(Xs, ys)
     
 print( clf.predict(scaler.transform([[4.7, 3.1]])) )
 #[0]
@@ -80,7 +80,7 @@ print( clf.decision_function(scaler.transform([[4.7, 3.1]])) )
 
 from sklearn import metrics
 y_train_pred = clf.predict(X_train)
-print( metrics.accuracy_score(y_train, y_train_pred) )
+print(metrics.accuracy_score(y_train, y_train_pred))
 #0.821428571429
 
 y_pred = clf.predict(X_test)
@@ -94,7 +94,7 @@ print( metrics.classification_report(y_test, y_pred, target_names=iris.target_na
 #virginica 0.65 0.79 0.71 19
 #avg / total 0.66 0.68 0.66 38
 
-print( metrics.confusion_matrix(y_test, y_pred) )
+print(metrics.confusion_matrix(y_test, y_pred))
 #[[ 8 0 0]
 #[ 0 3 8]
 #[ 0 4 15]]
